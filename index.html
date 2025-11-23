@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Untuk Kamu 💜</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <div class="text-box">
+    <h1>HEI KAMU PACARKU BUKAN??!!</h1>
+    <p>COBA MASUKIN TANGGAL LAHIR KAMU!</p>
+  </div>
+
+  <div class="pin-container">
+    <!-- PERBAIKAN: Container untuk input dan custom dots -->
+    <div class="pin-input-container">
+      <input type="password" id="pin-input" maxlength="6" placeholder="" readonly>
+      <!-- Custom PIN dots indicator -->
+      <div class="pin-dots" id="pin-dots">
+        <div class="pin-dot"></div>
+        <div class="pin-dot"></div>
+        <div class="pin-dot"></div>
+        <div class="pin-dot"></div>
+        <div class="pin-dot"></div>
+        <div class="pin-dot"></div>
+      </div>
+      <!-- Placeholder dots -->
+      <div class="pin-placeholder" id="pin-placeholder">
+        <div class="pin-placeholder-dot"></div>
+        <div class="pin-placeholder-dot"></div>
+        <div class="pin-placeholder-dot"></div>
+        <div class="pin-placeholder-dot"></div>
+        <div class="pin-placeholder-dot"></div>
+        <div class="pin-placeholder-dot"></div>
+      </div>
+    </div>
+    
+    <div class="keypad">
+      <button class="num">1</button>
+      <button class="num">2</button>
+      <button class="num">3</button>
+      <button class="num">4</button>
+      <button class="num">5</button>
+      <button class="num">6</button>
+      <button class="num">7</button>
+      <button class="num">8</button>
+      <button class="num">9</button>
+      <button class="clear">C</button>
+      <button class="num">0</button>
+      <button class="ok">OK</button>
+    </div>
+  </div>
+
+  <!-- Notifikasi -->
+  <div class="notif" id="notif"></div>
+
+  <!--bubble animation-->
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+
+  <!-- animasi di pojok kanan bawah -->
+  <img src="https://cdn.pixabay.com/animation/2025/02/04/01/20/01-20-14-933_512.gif" class="corner-gif">
+
+  <!-- audio efek -->
+  <audio id="meow1" src="lagu/meow1.mp3" preload="auto"></audio>
+  <audio id="meow2" src="lagu/meow2.mp3" preload="auto"></audio>
+
+  <script src="js/script.js"></script>
+
+</body>
+</html>

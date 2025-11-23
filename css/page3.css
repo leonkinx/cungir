@@ -1,0 +1,900 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Press Start 2P', cursive, 'Courier New', monospace;
+    image-rendering: pixelated;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    background: 
+        linear-gradient(135deg, #8A2BE2 0%, #6A0DAD 100%),
+        repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.1) 10px, rgba(255,255,255,0.1) 20px);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    padding: 20px;
+    position: relative;
+}
+
+/* Pixel Border Effect */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 8px solid #FFFDD0;
+    border-image: 
+        repeating-linear-gradient(45deg, #FFFDD0, #E6E6FA 10px, #FFFFFF 10px, #FFFFFF 20px) 8;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.container {
+    width: 100%;
+    max-width: 900px;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    gap: 30px;
+    padding: 40px 0;
+}
+
+/* JUDUL DI ATAS SCROLL - POSISI NORMAL */
+.title {
+    color: #FFFDD0;
+    font-size: 1.6rem; /* Ukuran lebih proporsional */
+    text-shadow: 
+        3px 3px 0 #8A2BE2,
+        6px 6px 0 rgba(0, 0, 0, 0.3);
+    animation: pixelBounce 2s infinite;
+    background: rgba(0, 0, 0, 0.85);
+    padding: 15px 30px;
+    border: 3px solid #FFFDD0;
+    box-shadow: 
+        6px 6px 0 rgba(0, 0, 0, 0.3),
+        inset 2px 2px 0 rgba(255, 255, 255, 0.2);
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.title::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: -6px;
+    right: -6px;
+    bottom: -6px;
+    border: 2px solid #FFFFFF;
+    z-index: -1;
+}
+
+@keyframes pixelBounce {
+    0%, 100% { 
+        transform: translateY(0) scale(1);
+    }
+    50% { 
+        transform: translateY(-5px) scale(1.02);
+    }
+}
+
+.scroll-container {
+    perspective: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* GULUNGAN KERTAS - RAPIH */
+.scroll {
+    width: 380px; /* Sedikit lebih lebar */
+    height: 420px; /* Sedikit lebih tinggi */
+    background: #FFFDD0;
+    position: relative;
+    border-radius: 0;
+    box-shadow: 
+        8px 8px 0 rgba(0, 0, 0, 0.3),
+        inset 2px 2px 0 rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+    transform-style: preserve-3d;
+    animation: scrollAppear 1.5s ease-out;
+    border: 4px solid #8A2BE2;
+}
+
+/* Efek gulungan kertas */
+.scroll::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 45px;
+    background: linear-gradient(to bottom, #8A2BE2, #6A0DAD);
+    z-index: 2;
+    border-bottom: 4px solid #FFFDD0;
+}
+
+.scroll::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 45px;
+    background: linear-gradient(to top, #8A2BE2, #6A0DAD);
+    z-index: 2;
+    border-top: 4px solid #FFFDD0;
+}
+
+/* Efek kertas bergulung di sisi */
+.scroll-side {
+    position: absolute;
+    top: 45px;
+    bottom: 45px;
+    width: 22px;
+    background: linear-gradient(to right, #8A2BE2, #6A0DAD, #8A2BE2);
+    z-index: 1;
+}
+
+.scroll-left {
+    left: 0;
+    border-right: 4px solid #FFFDD0;
+}
+
+.scroll-right {
+    right: 0;
+    border-left: 4px solid #FFFDD0;
+}
+
+.scroll-content {
+    padding: 55px 35px 35px;
+    height: 100%;
+    overflow-y: auto;
+    text-align: left;
+    position: relative;
+    z-index: 3;
+    background: #FFFDD0;
+    line-height: 1.6;
+}
+
+.scroll-content h2 {
+    color: #8A2BE2;
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: 1.4rem;
+    border-bottom: 3px dashed #8A2BE2;
+    padding-bottom: 12px;
+    text-shadow: 1px 1px 0 #FFFDD0;
+}
+
+.scroll-content p {
+    color: #5d4037;
+    margin-bottom: 18px;
+    font-size: 0.85rem;
+    text-align: justify;
+}
+
+.scroll-content .signature {
+    text-align: right;
+    font-style: italic;
+    margin-top: 25px;
+    color: #8A2BE2;
+    font-weight: bold;
+    font-size: 0.9rem;
+    text-shadow: 1px 1px 0 #FFFDD0;
+}
+
+.date {
+    text-align: center;
+    margin-top: 20px;
+    color: #8A2BE2;
+    font-weight: bold;
+    font-size: 0.75rem;
+}
+
+@keyframes scrollAppear {
+    0% { 
+        transform: translateY(50px) rotateX(10deg);
+        opacity: 0;
+    }
+    100% { 
+        transform: translateY(0) rotateX(0);
+        opacity: 1;
+    }
+}
+
+/* MUSIC CONTROL - ELEGAN DAN RAPI */
+.music-control-elegant {
+    position: fixed;
+    top: 25px;
+    left: 25px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.music-btn-elegant {
+    width: 65px;
+    height: 65px;
+    background: linear-gradient(145deg, #8A2BE2, #6A0DAD);
+    border: none;
+    border-radius: 50%;
+    color: #FFFDD0;
+    font-size: 1.7rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 
+        0 6px 20px rgba(138, 43, 226, 0.4),
+        inset 0 2px 4px rgba(255, 255, 255, 0.3),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.music-btn-elegant::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+}
+
+.music-btn-elegant:hover::before {
+    left: 100%;
+}
+
+.music-btn-elegant:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 
+        0 10px 25px rgba(138, 43, 226, 0.6),
+        inset 0 2px 4px rgba(255, 255, 255, 0.4);
+}
+
+.music-btn-elegant:active {
+    transform: translateY(1px) scale(0.98);
+}
+
+.music-btn-elegant.playing {
+    background: linear-gradient(145deg, #6A0DAD, #8A2BE2);
+    animation: musicGlow 2s ease-in-out infinite;
+}
+
+@keyframes musicGlow {
+    0%, 100% {
+        box-shadow: 
+            0 6px 20px rgba(138, 43, 226, 0.4),
+            inset 0 2px 4px rgba(255, 255, 255, 0.3);
+    }
+    50% {
+        box-shadow: 
+            0 6px 25px rgba(138, 43, 226, 0.8),
+            inset 0 2px 4px rgba(255, 255, 255, 0.4);
+    }
+}
+
+/* TULISAN PUTIH - RAPI DAN ELEGAN */
+.music-label-elegant {
+    background: rgba(255, 255, 255, 0.95);
+    color: #8A2BE2;
+    padding: 10px 16px;
+    border: 2px solid #8A2BE2;
+    border-radius: 25px;
+    font-size: 0.75rem;
+    text-align: center;
+    box-shadow: 
+        0 4px 12px rgba(0, 0, 0, 0.15);
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.music-label-elegant:hover {
+    background: rgba(255, 255, 255, 1);
+    transform: translateY(-2px);
+    box-shadow: 
+        0 6px 16px rgba(138, 43, 226, 0.25);
+}
+
+/* LOVE TERBANG - BERSIH TANPA KOTAK */
+.flying-love {
+    position: fixed;
+    top: 25px;
+    right: 25px;
+    z-index: 100;
+    transform: rotate(-15deg);
+    animation: flyLove 4s ease-in-out infinite;
+}
+
+.love-img {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+    image-rendering: pixelated;
+    filter: brightness(1.1) saturate(1.2);
+}
+
+@keyframes flyLove {
+    0%, 100% {
+        transform: rotate(-15deg) translateY(0) scale(1);
+    }
+    25% {
+        transform: rotate(-12deg) translateY(-8px) scale(1.05);
+    }
+    50% {
+        transform: rotate(-18deg) translateY(-4px) scale(1.02);
+    }
+    75% {
+        transform: rotate(-14deg) translateY(-6px) scale(1.03);
+    }
+}
+
+/* BUBBLE ANIMATION - SUBTLE */
+.bubble {
+    position: absolute;
+    bottom: -50px;
+    border-radius: 50%;
+    animation: floatUp 20s linear infinite;
+    background: rgba(255, 253, 208, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.bubble:nth-child(1) { 
+    left: 15%; 
+    width: 6px; 
+    height: 6px; 
+    animation-delay: 0s; 
+    animation-duration: 18s;
+}
+.bubble:nth-child(2) { 
+    left: 30%; 
+    width: 8px; 
+    height: 8px; 
+    animation-delay: 3s; 
+    animation-duration: 22s;
+}
+.bubble:nth-child(3) { 
+    left: 50%; 
+    width: 5px; 
+    height: 5px; 
+    animation-delay: 6s; 
+    animation-duration: 20s;
+}
+.bubble:nth-child(4) { 
+    left: 70%; 
+    width: 7px; 
+    height: 7px; 
+    animation-delay: 9s; 
+    animation-duration: 25s;
+}
+.bubble:nth-child(5) { 
+    left: 85%; 
+    width: 9px; 
+    height: 9px; 
+    animation-delay: 12s; 
+    animation-duration: 19s;
+}
+
+@keyframes floatUp {
+    0% { 
+        transform: translateY(0) translateX(0) scale(1);
+        opacity: 0.3; 
+    }
+    50% {
+        transform: translateY(-60vh) translateX(15px) scale(1.1);
+        opacity: 0.6;
+    }
+    100% { 
+        transform: translateY(-120vh) translateX(-15px) scale(1);
+        opacity: 0; 
+    }
+}
+
+/* Hapus music player lama */
+.music-player {
+    display: none;
+}
+
+/* RESPONSIF */
+@media (max-width: 414px) and (max-height: 896px) {
+    .container {
+        gap: 25px;
+        padding: 30px 0;
+    }
+    
+    .title {
+        font-size: 1.3rem;
+        padding: 12px 20px;
+        margin-bottom: 5px;
+    }
+    
+    .scroll {
+        width: 340px;
+        height: 380px;
+    }
+    
+    .scroll-content {
+        padding: 45px 25px 25px;
+    }
+    
+    .scroll-content h2 {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+    }
+    
+    .scroll-content p {
+        font-size: 0.8rem;
+        margin-bottom: 15px;
+    }
+    
+    .music-control-elegant {
+        top: 20px;
+        left: 20px;
+        gap: 10px;
+    }
+    
+    .music-btn-elegant {
+        width: 55px;
+        height: 55px;
+        font-size: 1.5rem;
+    }
+    
+    .music-label-elegant {
+        padding: 8px 12px;
+        font-size: 0.7rem;
+    }
+    
+    .flying-love {
+        top: 20px;
+        right: 20px;
+    }
+    
+    .love-img {
+        width: 75px;
+        height: 75px;
+    }
+}
+
+@media (max-width: 768px) {
+    .title {
+        font-size: 1.4rem;
+    }
+    
+    .scroll {
+        width: 350px;
+        height: 390px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        gap: 20px;
+        padding: 25px 0;
+    }
+    
+    .title {
+        font-size: 1.1rem;
+        padding: 10px 16px;
+    }
+    
+    .scroll {
+        width: 300px;
+        height: 350px;
+    }
+    
+    .scroll-content {
+        padding: 40px 20px 20px;
+    }
+    
+    .music-control-elegant {
+        top: 15px;
+        left: 15px;
+    }
+    
+    .music-btn-elegant {
+        width: 50px;
+        height: 50px;
+        font-size: 1.4rem;
+    }
+    
+    .music-label-elegant {
+        font-size: 0.65rem;
+        padding: 6px 10px;
+        white-space: normal;
+        max-width: 85px;
+        line-height: 1.2;
+    }
+    
+    .flying-love {
+        top: 15px;
+        right: 15px;
+    }
+    
+    .love-img {
+        width: 65px;
+        height: 65px;
+    }
+}
+
+/* Safe area support */
+@supports(padding: max(0px)) {
+    body {
+        padding-left: max(15px, env(safe-area-inset-left));
+        padding-right: max(15px, env(safe-area-inset-right));
+        padding-top: max(15px, env(safe-area-inset-top));
+        padding-bottom: max(15px, env(safe-area-inset-bottom));
+    }
+    
+    .music-control-elegant {
+        top: max(25px, env(safe-area-inset-top));
+        left: max(25px, env(safe-area-inset-left));
+    }
+    
+    .flying-love {
+        top: max(25px, env(safe-area-inset-top));
+        right: max(25px, env(safe-area-inset-right));
+    }
+    /* CSS untuk gambar animasi tambahan */
+.floating-hearts {
+    position: fixed;
+    top: 50%;
+    left: 10%;
+    width: 80px;
+    height: 80px;
+    z-index: 5;
+    animation: floatHorizontal 8s ease-in-out infinite;
+    filter: drop-shadow(0 0 10px rgba(255, 253, 208, 0.6));
+    pointer-events: none;
+}
+
+.sparkle-stars {
+    position: fixed;
+    bottom: 20%;
+    right: 15%;
+    width: 70px;
+    height: 70px;
+    z-index: 5;
+    animation: sparkleRotate 6s ease-in-out infinite;
+    filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.7));
+    pointer-events: none;
+}
+
+.magic-dust {
+    position: fixed;
+    top: 30%;
+    right: 10%;
+    width: 60px;
+    height: 60px;
+    z-index: 5;
+    animation: magicFloat 10s ease-in-out infinite;
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.8));
+    pointer-events: none;
+}
+
+@keyframes floatHorizontal {
+    0%, 100% {
+        transform: translateY(0) translateX(0) scale(1);
+        opacity: 0.8;
+    }
+    25% {
+        transform: translateY(-25px) translateX(15px) scale(1.1);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(0) translateX(30px) scale(1);
+        opacity: 0.8;
+    }
+    75% {
+        transform: translateY(25px) translateX(15px) scale(0.9);
+        opacity: 0.7;
+    }
+}
+
+@keyframes sparkleRotate {
+    0%, 100% {
+        transform: rotate(0deg) scale(1);
+        opacity: 0.7;
+    }
+    25% {
+        transform: rotate(90deg) scale(1.1);
+        opacity: 0.9;
+    }
+    50% {
+        transform: rotate(180deg) scale(1.2);
+        opacity: 1;
+    }
+    75% {
+        transform: rotate(270deg) scale(1.1);
+        opacity: 0.9;
+    }
+}
+
+@keyframes magicFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg) scale(1);
+        opacity: 0.6;
+    }
+    33% {
+        transform: translateY(-20px) rotate(120deg) scale(1.1);
+        opacity: 0.8;
+    }
+    66% {
+        transform: translateY(15px) rotate(240deg) scale(0.9);
+        opacity: 0.7;
+    }
+}
+
+/* Responsif untuk gambar animasi */
+@media (max-width: 768px) {
+    .floating-hearts {
+        width: 60px;
+        height: 60px;
+        left: 5%;
+        top: 45%;
+    }
+    
+    .sparkle-stars {
+        width: 50px;
+        height: 50px;
+        right: 10%;
+        bottom: 25%;
+    }
+    
+    .magic-dust {
+        width: 45px;
+        height: 45px;
+        right: 5%;
+        top: 25%;
+    }
+}
+
+@media (max-width: 480px) {
+    .floating-hearts {
+        width: 50px;
+        height: 50px;
+        left: 3%;
+        top: 40%;
+    }
+    
+    .sparkle-stars {
+        width: 40px;
+        height: 40px;
+        right: 8%;
+        bottom: 30%;
+    }
+    
+    .magic-dust {
+        width: 35px;
+        height: 35px;
+        right: 3%;
+        top: 20%;
+    }
+}
+
+/* Untuk landscape mode */
+@media (max-height: 500px) and (orientation: landscape) {
+    .floating-hearts {
+        width: 40px;
+        height: 40px;
+        top: 40%;
+        left: 5%;
+    }
+    
+    .sparkle-stars {
+        width: 35px;
+        height: 35px;
+        bottom: 15%;
+        right: 8%;
+    }
+    
+    .magic-dust {
+        width: 30px;
+        height: 30px;
+        top: 25%;
+        right: 5%;
+    }
+
+    
+}
+}
+/* ==================== KEYFRAMES UNTUK ANIMASI JS ==================== */
+
+/* Floating Hearts Animation */
+@keyframes floatHeart {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.7;
+    }
+    20% {
+        transform: translateY(-100px) translateX(20px) rotate(45deg);
+        opacity: 0.8;
+    }
+    40% {
+        transform: translateY(-200px) translateX(-15px) rotate(90deg);
+        opacity: 0.9;
+    }
+    60% {
+        transform: translateY(-300px) translateX(10px) rotate(135deg);
+        opacity: 0.8;
+    }
+    80% {
+        transform: translateY(-400px) translateX(-5px) rotate(180deg);
+        opacity: 0.6;
+    }
+    100% {
+        transform: translateY(-500px) translateX(0) rotate(225deg);
+        opacity: 0;
+    }
+}
+
+/* Sparkle Pop Animation */
+@keyframes sparklePop {
+    0% {
+        transform: scale(0) rotate(0deg);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2) rotate(180deg);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Floating Words Animation */
+@keyframes floatWord {
+    0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.8;
+    }
+    90% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(-100vh) translateX(var(--random-x, 0px));
+opacity: 0;
+    }
+}
+
+/* Responsif untuk animasi JS */
+@media (max-width: 768px) {
+    @keyframes floatHeart {
+        0% {
+            transform: translateY(0) rotate(0deg);
+            opacity: 0.7;
+        }
+        100% {
+            transform: translateY(-300px) rotate(180deg);
+            opacity: 0;
+        }
+    }
+}
+
+/* HAPUS .bubble yang lama dan ganti dengan ini */
+
+.bubble-container {
+    position: fixed;
+    width: 100%;
+    height: 100vh; /* PASTIKAN full viewport height */
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 1; /* Lebih rendah dari konten */
+    overflow: hidden;
+}
+
+.bubble {
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--bubble-color1), var(--bubble-color2));
+    box-shadow: 0 0 10px rgba(255, 182, 193, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0 0 3px rgba(0,0,0,0.2);
+    animation: floatUp 8s linear forwards;
+    opacity: 0.6;
+    bottom: 0; /* MULAI DARI BAWAH */
+}
+
+.bubble.heart {
+    background: linear-gradient(135deg, #ff69b4, #ff1493);
+}
+
+.bubble.cream {
+    background: linear-gradient(135deg, #fffdd0, #fdf5e6);
+    color: #ff69b4;
+}
+
+.bubble.purple {
+    background: linear-gradient(135deg, #e6e6fa, #dda0dd);
+    color: #ff1493;
+}
+
+.bubble.message {
+    font-family: 'Arial', sans-serif;
+    font-size: 9px;
+    padding: 2px;
+    text-align: center;
+    opacity: 0.8;
+}
+
+.bubble.twinkle {
+    animation: floatUp 6s linear forwards, twinkle 2s ease-in-out infinite;
+}
+
+/* ANIMASI FULL LAYAR - PASTIKAN -100vh */
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) translateX(0) rotate(0deg);
+        opacity: 0.6;
+    }
+    100% {
+        transform: translateY(-100vh) translateX(var(--random-x)) rotate(120deg);
+        opacity: 0;
+    }
+}
+
+@keyframes twinkle {
+    0%, 100% { 
+        opacity: 0.5; 
+        transform: scale(1); 
+    }
+    50% { 
+        opacity: 0.8; 
+        transform: scale(1.05); 
+    }
+}
+
+.heart-shape {
+    position: relative;
+    width: 40%;
+    height: 40%;
+}
+
+.heart-shape:before,
+.heart-shape:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    border-radius: 50%;
+    opacity: 0.8;
+}
+
+.heart-shape:before {
+    top: -50%;
+    left: 0;
+}
+
+.heart-shape:after {
+    top: 0;
+    left: -50%;
+}
